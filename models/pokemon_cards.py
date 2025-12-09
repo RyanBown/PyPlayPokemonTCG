@@ -12,7 +12,7 @@ class Card:
                  rarity, 
                  legalities,
                  images,
-                 artist,
+                 artist='',
                  regulationMark = '',
                  rules = ''
                 ):
@@ -53,12 +53,12 @@ class Pokemon(Card):
                  legalities,
                  regulationMark,
                  images,
-                 artist,
-                 hp, types, attacks, 
-                 weaknesses, 
-                 
-
+                 hp, 
+                 types, 
+                 attacks, 
                  nationalPokedexNumbers,
+                 artist='',
+                 weaknesses='',
                  retreatCost='', 
                  convertedRetreatCost=0,
                  rules='', 
@@ -70,7 +70,6 @@ class Pokemon(Card):
         super().__init__(name, 
                  supertype, 
                  subtypes,
-                   
                  number, 
                  id,
                  rules, 
@@ -108,10 +107,10 @@ class Trainer(Card):
                  number, 
                  id,
                  rarity, 
-                 artist,
                  legalities,
                  regulationMark,
                  images,
+                 artist='',
                  rules='', ):
         super().__init__(name, 
                  supertype, 
@@ -141,10 +140,11 @@ class Energy(Card):
                  subtypes,
                  number, 
                  id,
-                 artist,
+                 
                  legalities,
                  images,  
                  energy_produced,
+                 artist= '',
                  regulationMark = '',
                  energy_effect = '',
                  rules='',
