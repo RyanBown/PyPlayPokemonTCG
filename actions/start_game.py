@@ -3,18 +3,8 @@ import json
 
 from models.board import Board, Deck, Hand, Prizes
 from models.pokemon_cards import Pokemon, Trainer, Energy
+from actions.utils import BASIC_ENERGY_TYPES
 
-BASIC_ENERGY_TYPES = {
-    "Water Energy":"base1-102",
-    "Psychic Energy": "base1-101",
-    "Lightning Energy": "base1-100",
-    "Fighting Energy":"base1-97", 
-    "Fire Energy": "base1-98",
-    "Grass Energy": "base1-99",
-    "Metal Energy":"bw1-111",
-    "Darkness Energy":"bw1-112"
-
-}
 
 def convert_json_to_card(json_card):
     card_name = json_card['name']
@@ -91,7 +81,7 @@ def player_mulligan(player_deck:Deck, mulligan = 0):
                 player_hand = Hand(list(player_deck.draw(7)))
                 return [player_hand, mulligan]
 
-    if mulligan <= 7:
+    if mulligan < 7:
         return player_mulligan(player_deck, mulligan + 1)
     else:
         player_deck.shuffle_deck()
@@ -120,9 +110,17 @@ def select_active_from_hand(player_hand):
     return player_hand.remove(choices[selected_pkmn])
 
 
-def start_the_game():
-    player_1_deck = Deck(get_decks_from_deck_id('d-swsh4-1'))
-    player_2_deck = Deck(get_decks_from_deck_id('d-swsh4-2'))
+def start_the_game(player1_deck_list ='',player2_deck_list=''):
+    player_1_deck = ''
+    if player1_deck_list == '':
+        player_1_deck = Deck(get_decks_from_deck_id('d-swsh4-1'))
+    else:
+        player_1_deck = Deck(get_cards_from_cards_json(player1_deck_list))
+    player_2_deck = ''
+    if player2_deck_list == '':
+        player_2_deck = Deck(get_decks_from_deck_id('d-swsh4-2'))
+    else:
+        player_2_deck = Deck(get_cards_from_cards_json(player2_deck_list))
 
 
     player_1_hand, player_1_mulligan = player_mulligan(player_1_deck)
@@ -134,10 +132,16 @@ def start_the_game():
     if player_2_mulligan != player_1_mulligan:
         if player_1_mulligan > player_2_mulligan:
             extra_draw = player_1_mulligan - player_2_mulligan
-            player_1_hand.add(player_1_deck.draw(extra_draw))
+            print(f'Player 2 has {extra_draw} mulligans')
+            for card in list(player_1_deck.draw(extra_draw)):
+                player_1_hand.add(card)
         else:
+            print(f'Player 1 has {player_1_mulligan} mulligans')
             extra_draw = player_2_mulligan - player_1_mulligan
-            player_2_hand.add(player_2_deck.draw(extra_draw))
+            for card in list(player_2_deck.draw(extra_draw)):
+                player_2_hand.add(card)
+    else:
+        print('both players had {player_1_mulligan} mulligans')
 
     print('player_1\n\thand\n\t\t', player_1_hand)
     print('prizes\n\t\t',player_1_prizes)
