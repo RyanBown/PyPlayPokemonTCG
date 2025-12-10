@@ -130,18 +130,19 @@ def start_the_game(player1_deck_list ='',player2_deck_list=''):
     player_2_prizes = Prizes(player_2_deck.draw(6))
 
     if player_2_mulligan != player_1_mulligan:
+        extra_draw = 0
         if player_1_mulligan > player_2_mulligan:
             extra_draw = player_1_mulligan - player_2_mulligan
             print(f'Player 2 has {extra_draw} mulligans')
             for card in list(player_1_deck.draw(extra_draw)):
                 player_1_hand.add(card)
         else:
-            print(f'Player 1 has {player_1_mulligan} mulligans')
             extra_draw = player_2_mulligan - player_1_mulligan
+            print(f'Player 1 has {extra_draw} mulligans')
             for card in list(player_2_deck.draw(extra_draw)):
                 player_2_hand.add(card)
     else:
-        print('both players had {player_1_mulligan} mulligans')
+        print(f'both players had {player_1_mulligan} mulligans')
 
     print('player_1\n\thand\n\t\t', player_1_hand)
     print('prizes\n\t\t',player_1_prizes)
