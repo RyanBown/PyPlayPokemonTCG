@@ -1,92 +1,105 @@
+from models.board import Board
+
+from effect_utils import shuffle_hand_into_deck
+
 ### Supporters
-def lillie_s_determination():
-    print()
+def lillie_s_determination(player1_board:Board, player2_board:Board):
+    prize_count = len(player1_board.prizes.cards)
+    shuffle_hand_into_deck(player1_board)
+    if prize_count == 6:
+        player1_board.deck.draw(8)
+    else:
+        player1_board.deck.draw(6)
+
+
 def lana_s_aid():
-    print()
+    raise NotImplemented()
+
 def professor_s_research(hand, deck):
     hand.discard(len(hand))
     deck.draw(7)
 
 def boss_s_orders():
-    print()
+    raise NotImplemented()
 
 def hop(deck):
     deck.draw(3)
 
 def bede():
-    print()
+    raise NotImplemented()
 
 def sonia():
-    print()
+    raise NotImplemented()
 
 def dan():
-    print()
+    raise NotImplemented()
 
 def leon():
-    print()
+    raise NotImplemented()
 
 def professor_turo_s_scenario():
-    print()
+    raise NotImplemented()
+
 def nessa():
-    print()
+    raise NotImplemented()
 
 
 def iono():
-    print()
+    raise NotImplemented()
 
 def arven():
-    print()
+    raise NotImplemented()
 
 def hilda():
-    print()
+    raise NotImplemented()
 
 ## Items
 def prime_catcher():
-    print()
+    raise NotImplemented()
 
 def earthen_vessel():
-    print()
+    raise NotImplemented()
 def fighting_gong():
-    print()
+    raise NotImplemented()
 def premium_power_pro():
-    print()
+    raise NotImplemented()
 def superior_energy_retrieval():
-    print()
+    raise NotImplemented()
 def evolution_incense():
-    print()
+    raise NotImplemented()
 def ultra_ball():
-    print()
+    raise NotImplemented()
 def great_ball():
-    print()
+    raise NotImplemented()
 def nest_ball():
-    print()
+    raise NotImplemented()
 def counter_catcher():
-    print()
+    raise NotImplemented()
 def night_stretcher():
-    print()
+    raise NotImplemented()
 def buddy_buddy_poffin():
-    print()
+    raise NotImplemented()
 
 def ordinary_rod():
-    print()
+    raise NotImplemented()
 
 
 def switch():
-    print()
+    raise NotImplemented()
 
 
 def super_rod():
-    print()
+    raise NotImplemented()
 
 ##Tools
 
 def air_balloon():
-    print()
+    raise NotImplemented()
 def vitality_band():
-    print()
+    raise NotImplemented()
 ## Stadium
 
 def jamming_tower():
-    print()
+    raise NotImplemented()
 def artazon():
-    print()
+    raise NotImplemented()
